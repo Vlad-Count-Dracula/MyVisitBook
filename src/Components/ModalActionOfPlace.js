@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Modal, Text, Pressable, View, TextInput, StyleSheet } from 'react-native';
+import { Alert, Modal, Text, Pressable, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
 
 // Стараюсь сделать переиспользуемое модальное окно ...
@@ -20,7 +20,7 @@ const ModalActionOfPlace = ({ uniqueId, modal, setModal, textForOpen, textForClo
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Formik
-              initialValues={{ uniqueId, name: '', description: '', newCategory: '', }}
+              initialValues={{ uniqueId: uniqueId, name: '', description: '', newCategory: '', }}
               onSubmit={values => setModal({ ...modal, values })}
             >
               {/* insertInto(configurationName.dbName, uniqueId, values.newCategory, values.name, values.description) */}
@@ -44,25 +44,25 @@ const ModalActionOfPlace = ({ uniqueId, modal, setModal, textForOpen, textForClo
                     onBlur={handleBlur('description')}
                     value={values.description}
                   />
-                  <Pressable
+                  <TouchableOpacity
                     style={[styles.button, styles.buttonClose]}
                     onPress={() => {
                       setModalVisible(!modalVisible)
                       handleSubmit()
                     }}>
                     <Text style={styles.textStyle}>{textForClose}</Text>
-                  </Pressable>
+                  </TouchableOpacity>
                 </View>
               )}
             </Formik>
           </View>
         </View>
       </Modal>
-      <Pressable
+      <TouchableOpacity
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}>
         <Text style={styles.textStyle}>{textForOpen}</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 20,
-    padding: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 25,
     elevation: 2,
   },
   buttonOpen: {

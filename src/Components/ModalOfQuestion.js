@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import { Alert, Modal, StyleSheet, Text, Pressable, View, TouchableOpacity  } from 'react-native';
 import CommonContext from '../Context/Index';
 import { useFonts } from 'expo-font';
 
@@ -31,7 +31,7 @@ const ModalOfQuestion = (props) => {
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>{props.question}</Text>
                         <View>
-                            <Pressable
+                            <TouchableOpacity
                                 style={[styles.button, styles.buttonClose]}
                                 onPress={() => {
                                     setModalVisible(!modalVisible)
@@ -40,10 +40,10 @@ const ModalOfQuestion = (props) => {
                                 }
                                 }>
                                 <Text style={styles.textStyle}>{props.agree}</Text>
-                            </Pressable>
+                            </TouchableOpacity>
                         </View>
                         <View>
-                            <Pressable
+                            <TouchableOpacity
                                 style={[styles.button, styles.buttonClose]}
                                 onPress={() => {
                                     setModalVisible(!modalVisible)
@@ -51,16 +51,16 @@ const ModalOfQuestion = (props) => {
                                 }
                                 }>
                                 <Text style={styles.textStyle}>{props.disAgree}</Text>
-                            </Pressable>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
             </Modal>
-            <Pressable
+            <TouchableOpacity
                 style={[styles.button, styles.buttonOpen]}
                 onPress={() => setModalVisible(true)}>
                 <Text style={styles.textStyle}>{props.action}</Text>
-            </Pressable>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -91,12 +91,19 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         paddingHorizontal: 40,
         paddingVertical: 10,
-        elevation: 2,
+        elevation: 10,
+        
     },
     buttonOpen: {
         backgroundColor: '#000',
         alignItems: 'center',
         justifyContent: 'center',
+        borderBottomColor: '#B9A7A7',
+        borderBottomWidth: 3,
+        borderRightWidth: 3,
+        borderRightColor: '#C2B9B9',
+        opacity: 0.8,
+        
     },
     buttonClose: {
         backgroundColor: '#2196F3',

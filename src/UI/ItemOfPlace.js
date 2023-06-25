@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity  } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons/faEllipsisVertical';
@@ -34,16 +34,16 @@ const ItemOfPLace = ({ place }) => {
           <Text style={styles.itemInfoHeaderCategoryText} >{place.category}</Text>
         </View>
         {/* Отвечает за отображение дополнительных опций */}
-        <Pressable onPress={() => toggleSwitch(setIsOptions)} >
+        <TouchableOpacity  onPress={() => toggleSwitch(setIsOptions)} >
           <View style={styles.itemInfoHeaderCategoryButtonOptions} >
             <FontAwesomeIcon icon={faEllipsisVertical} color='#fff' />
           </View>
-        </Pressable>
+        </TouchableOpacity >
         {isOptions ?
           <View style={styles.itemInfoHeaderCategoryActiveButtonOptions} >
             <View>
               {/*Action to update existence place */} 
-              <ModalActionOfPlace uniqueId={place.id} modal={updatedPlase} setModal={setUpdatedPlace} textForOpen='Open' textForClose='Close' />
+              <ModalActionOfPlace uniqueId={place.id} modal={updatedPlase} setModal={setUpdatedPlace} textForOpen='Edit info' textForClose='Safe new info' />
             </View>
           </View> :
           null}
@@ -106,14 +106,22 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     backgroundColor: '#000',
+    opacity: 0.8,
+    elevation: 5,
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
   },
   itemInfoHeaderCategoryActiveButtonOptions: {
     position: 'absolute',
-    top: 45,
-    right: -10,
+    right: 40,
   },
   itemInfoBodyText: {
     marginTop: 10,

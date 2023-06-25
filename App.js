@@ -9,7 +9,9 @@ import { useState } from 'react';
 
 
 // Такс Димычь , заранее спасибо тебе за твою помощь ;) 
-// Постарался вынести сюда все монипуляции с баззой данных и ключевые функции управления состоянием приложения  
+// Знаю что много текста это плохо но хотелось как-то упростить тебе знакомство с проектом , извини если не получилось :D
+
+// Постарался разместить здесь все монипуляции с баззой данных и ключевые функции управления состоянием приложения  
 
 export default function App() {
   const [modal, setModal] = useState([]); // Использование этого состояния ты найдешь в папке Components файл ModalActionOfPlace.js 
@@ -26,6 +28,8 @@ export default function App() {
 
   const [updatedPlase, setUpdatedPlace] = useState([]); // Использование этого состояния ты найдешь в папке UI файл ItemOfPLace.js 
   // использую его для внесения изменений в уже сосзданное место . На данный момент эта возможность не реализована польностю .
+
+  const [textForSearch, setTextForSearch] = useState('');
 
   // Все методы работы с SQLite ты найдешь в папке DB
 
@@ -58,8 +62,8 @@ export default function App() {
 
   async function updateItem() {
     try {
-      await updateData(configurationName.dbName, updatedPlase.uniqueId, 
-      updatedPlase.values.newCategory , updatedPlase.values.name, updatedPlase.values.description)
+      await updateData(configurationName.dbName, updatedPlase.values.uniqueId,
+        updatedPlase.values.newCategory, updatedPlase.values.name, updatedPlase.values.description)
       await fetchData()
     } catch (error) {
       console.error(error);
@@ -104,6 +108,8 @@ export default function App() {
       setIsSearch,
       updatedPlase,
       setUpdatedPlace,
+      textForSearch,
+      setTextForSearch,
     }} >
       <NavigationContainer>
         <MyDrawer />
@@ -111,5 +117,4 @@ export default function App() {
     </CommonContext.Provider>
   );
 }
-
 

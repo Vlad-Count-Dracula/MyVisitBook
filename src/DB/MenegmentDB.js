@@ -39,7 +39,7 @@ export async function select(dbName) {
 
 export async function insertInto(dbName, id, category, place, description) {
   const dirInfo = await checkExistenceDB(dbName)
-  if(!dirInfo) await createDataBase(dbName)
+  if (!dirInfo) await createDataBase(dbName)
 
   const db = await SQLite.openDatabase(dbName)
   db.transaction(tx => {
@@ -53,6 +53,20 @@ export async function insertInto(dbName, id, category, place, description) {
         console.log('Error:', error);
       }
     );
+  });
+}
+
+export async function updateData(dbName, id, category, place, description) {
+  const db = await SQLite.openDatabase(dbName)
+  db.transaction(tx => {
+    tx.executeSql('UPDATE myTest SET category = ?, place =?, description=? WHERE id = ?',
+      [category, place, description, id],
+      (_, result) => {
+        console.log('Rows affected:', result.rowsAffected);
+      },
+      (_, error) => {
+        console.log('Error:', error);
+      })
   });
 }
 
@@ -72,21 +86,11 @@ export async function deletePost(dbName, id) {
   });
 }
 
-export async function updateData(dbName, id, category, place, description) {
-  const db = await SQLite.openDatabase(dbName)
-  db.transaction(tx => {
-    tx.executeSql(`
-    UPDATE myTest SET question = '${id}', '${category}', '${place}', '${description}'
-    WERE id = '${id}'
-    `)
-  }), error => console.log(`update error: ${error}`);
-}
-
 
 export async function deleteDB(dbName) {
   const dbDir = FileSystem.documentDirectory + 'SQLite/'
-  const dirInfo = await FileSystem.getInfoAsync(dbDir+dbName)
-  if(dirInfo) await FileSystem.deleteAsync(dbDir+dbName, {idempotent: true})
+  const dirInfo = await FileSystem.getInfoAsync(dbDir + dbName)
+  if (dirInfo) await FileSystem.deleteAsync(dbDir + dbName, { idempotent: true })
 
   console.log('table deleted');
 }
