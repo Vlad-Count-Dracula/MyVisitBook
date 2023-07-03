@@ -19,3 +19,19 @@ export const useSortedPosts = (searchValue, libraryItems) => {
 
     return sortedBySearching
 }
+
+export const useSortedPostsCategoty = (searchValue, libraryItems) => {
+    const sortedBySearching = useMemo(() => {
+        if (searchValue.length > 0) {
+            return [...libraryItems].filter(post => {
+                if (post?.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) {
+                    return post.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+                }
+            })
+        } else {
+            return libraryItems
+        }
+    }, [searchValue, libraryItems])
+
+    return sortedBySearching
+}

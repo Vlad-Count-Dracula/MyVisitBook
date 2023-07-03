@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 
 // Стараюсь сделать переиспользуемое модальное окно ...
 
-const ModalActionOfPlace = ({ uniqueId, modal, setModal, textForOpen, textForClose }) => {
+const ModalActionOfPlace = ({ uniqueId, modal, setModal, textForOpen, textForClose, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -49,6 +49,7 @@ const ModalActionOfPlace = ({ uniqueId, modal, setModal, textForOpen, textForClo
                     onPress={() => {
                       setModalVisible(!modalVisible)
                       handleSubmit()
+                      navigation.navigate('Library')
                     }}>
                     <Text style={styles.textStyle}>{textForClose}</Text>
                   </TouchableOpacity>
@@ -96,10 +97,10 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: '#F194FF',
+    backgroundColor: '#000',
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#000',
   },
   textStyle: {
     color: 'white',

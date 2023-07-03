@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity  } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Pressable  } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faLayerGroup } from '@fortawesome/free-solid-svg-icons/faLayerGroup';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons/faEllipsisVertical';
@@ -12,7 +12,7 @@ import CommonContext from '../Context/Index';
 
 // Отвечает за отображение онформации о месте и предоставляет варианты манипуляций с ним .
 
-const ItemOfPLace = ({ place }) => {
+const ItemOfPLace = ({ place, navigation }) => {
 
   const [isOptions, setIsOptions] = React.useState(false);
   const { updatedPlase, setUpdatedPlace } = useContext(CommonContext)
@@ -41,9 +41,9 @@ const ItemOfPLace = ({ place }) => {
         </TouchableOpacity >
         {isOptions ?
           <View style={styles.itemInfoHeaderCategoryActiveButtonOptions} >
-            <View>
+            <View >
               {/*Action to update existence place */} 
-              <ModalActionOfPlace uniqueId={place.id} modal={updatedPlase} setModal={setUpdatedPlace} textForOpen='Edit info' textForClose='Safe new info' />
+              <ModalActionOfPlace navigation={navigation} uniqueId={place.id} modal={updatedPlase} setModal={setUpdatedPlace} textForOpen='Edit info' textForClose='Safe new info' />
             </View>
           </View> :
           null}

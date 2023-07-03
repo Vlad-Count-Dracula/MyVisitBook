@@ -42,14 +42,14 @@ const MyHeader = (props) => {
                 }}
             />
             <View>
-                {isSearch ? <View style={styles.textInput} >
+                {/* {isSearch ? <View style={styles.textInput} >
                     <TextInput
                         placeholder='Write a category or the name of some place!'
                         onChangeText={(value) => {
                             setTextForSearch(value)
                         }}
                     />
-                </View> : ''}
+                </View> : ''} */}
             </View>
         </View>
     )

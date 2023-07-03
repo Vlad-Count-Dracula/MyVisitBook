@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2196F3',
     },
     textStyle: {
-        color: 'white',
+        color: '#fff',
         fontSize: 16,
         fontWeight: 300,
     },
